@@ -9,10 +9,16 @@ function string.starts(String,Start)
     return string.sub(String,1,string.len(Start))==Start
 end
 
-function OnSelectCel()
+function OnSelectCel(ev)
+    if(ev.fromUndo) then
+        return
+    end
     if app.site.cel == nil then
         if app.site.layer.name == EventLayerName then
             app.sprite:newCel(app.site.layer, app.site.frameNumber)
+            if app.site.cel ~= nil then
+                app.site.cel.data = ""
+            end
         end
     end
     DoCel(app.site.cel)
@@ -47,7 +53,7 @@ app.events:on('sitechange',
                     for i,layer in ipairs(app.sprite.layers) do
                         if layer.name == EventLayerName then
                             layerTo = layer
-                            layer.isEditable = false
+                            layer.isEditable = true
                             layer.isVisible = false
                         end
                     end
