@@ -2,7 +2,7 @@
   "name": "Animaton Cel Color",
   "displayName": "Animation Cel Color by Soupmasters",
   "description": "Automaticlly assigns cel colors to cel with userData.",
-  "version": "1.1",
+  "version": "1.2",
   "author": { "name": "Soupmasters",
               "email": "contact@soupmasters.com",
               "url": "https://soupmasters.com/" },

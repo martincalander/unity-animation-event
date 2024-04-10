@@ -29,16 +29,20 @@ function DoCel(cel)
         return
     end
     if cel.data == ""  then
-        cel.color = DefaultColor
+        if cel.color == RedColor then
+            cel.color = DefaultColor
+        end
     else
         if string.starts(cel.data, "event:@") == false then
             cel.data = "event:@" .. cel.data
         end
-        cel.color = RedColor
+        if cel.color ~= RedColor then
+            cel.color = RedColor
+        end
     end
 end
 
-
+--app.events:on('sitechange', OnSelectCel)
 PreviousSprite = nil
 app.events:on('sitechange',
         function()
