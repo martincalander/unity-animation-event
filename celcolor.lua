@@ -1,4 +1,4 @@
-EventLayerName = "Events"
+EventLayerName = "@Events"
 
 GreyColor = Color{ r=212, g=211, b=211, a=255 }
 RedColor = Color{ r=255, g=0, b=0, a=255 }
@@ -43,6 +43,7 @@ function DoCel(cel)
 end
 
 --app.events:on('sitechange', OnSelectCel)
+
 PreviousSprite = nil
 app.events:on('sitechange',
         function()
@@ -55,10 +56,18 @@ app.events:on('sitechange',
                 if app.sprite ~= nil then
                     local layerTo = nil
                     for i,layer in ipairs(app.sprite.layers) do
-                        if layer.name == EventLayerName then
+                        if layer.layers ~= nil then
+                            for i,layer in ipairs(layer.layers) do
+                                if layer.name == EventLayerName then
+                                    layerTo = layer
+                                    layer.isEditable = false
+                                    layer.isVisible = true
+                                end
+                            end
+                        elseif layer.name == EventLayerName then
                             layerTo = layer
-                            layer.isEditable = true
-                            layer.isVisible = false
+                            layer.isEditable = false
+                            layer.isVisible = true
                         end
                     end
                     if layerTo ~= nil then
