@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 jobs:
   validate-package:
@@ -243,16 +243,37 @@ jobs:
         shell: bash
         env:
           ASSET: ${{ needs.validate-package.outputs.asset }}
+          EXPECTED_SHA256: ${{ needs.validate-package.outputs.sha256 }}
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ needs.validate-package.outputs.version }}
         run: |
-          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            gh release upload \
-              "$GITHUB_REF_NAME" \
-              "dist/$ASSET" \
-              --clobber \
-              --repo "$GITHUB_REPOSITORY"
+          release_api="repos/$GITHUB_REPOSITORY/releases/tags/$GITHUB_REF_NAME"
+          if release_json=$(gh api "$release_api" 2>&1); then
+            asset_digest=$(
+              jq -r \
+                --arg asset "$ASSET" \
+                '.assets[] | select(.name == $asset) | .digest // empty' \
+                <<< "$release_json"
+            )
+
+            if [[ -z "$asset_digest" ]]; then
+              gh release upload \
+                "$GITHUB_REF_NAME" \
+                "dist/$ASSET" \
+                --repo "$GITHUB_REPOSITORY"
+            elif [[ "$asset_digest" == "sha256:$EXPECTED_SHA256" ]]; then
+              echo "$ASSET is already published with the expected SHA-256."
+            else
+              echo "Refusing to replace immutable release asset $ASSET." >&2
+              echo "Expected sha256:$EXPECTED_SHA256, found $asset_digest." >&2
+              exit 1
+            fi
           else
+            if [[ "$release_json" != *"(HTTP 404)"* ]]; then
+              echo "$release_json" >&2
+              exit 1
+            fi
+
             gh release create \
               "$GITHUB_REF_NAME" \
               "dist/$ASSET" \
@@ -260,3 +281,4 @@ jobs:
               --repo "$GITHUB_REPOSITORY" \
               --title "Unity Animation Event $VERSION" \
               --verify-tag
+          fi
