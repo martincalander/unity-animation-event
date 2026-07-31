@@ -65,7 +65,7 @@ jobs:
 
   validate:
     name: Validate and package
-    uses: martincalander/aseprite-extension-action/.github/workflows/validate.yml@8a2326d66105a36304f4f8868272c399158edab5 # v1.0.0
+    uses: martincalander/aseprite-extension-action/.github/workflows/validate.yml@fb76532e6be5ca39b3be63ed8bdc103149885053 # v1.0.1
 
   release:
     name: Publish GitHub Release
@@ -76,7 +76,7 @@ jobs:
     permissions:
       actions: read
       contents: write
-    uses: martincalander/aseprite-extension-action/.github/workflows/release.yml@8a2326d66105a36304f4f8868272c399158edab5 # v1.0.0
+    uses: martincalander/aseprite-extension-action/.github/workflows/release.yml@fb76532e6be5ca39b3be63ed8bdc103149885053 # v1.0.1
     with:
       artifact-name: ${{ needs.validate.outputs.artifact-name }}
       asset-name: ${{ needs.validate.outputs.asset-name }}
