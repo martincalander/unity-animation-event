@@ -11,10 +11,10 @@
   "license": "MIT",
   "categories": [ "Scripts" ],
   "keywords": [ "unity", "animation", "event", "timeline", "aseprite" ],
-  "homepage": "https://github.com/martincalander/unity-animation-event",
+  "homepage": "https://github.com/martincalander/AsepriteUnityEvent",
   "repository": {
     "type": "git",
-    "url": "https://github.com/martincalander/unity-animation-event.git"
+    "url": "https://github.com/martincalander/AsepriteUnityEvent.git"
   },
   "contributes": {
     "scripts": [

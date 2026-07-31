@@ -1,9 +1,9 @@
 # Unity Animation Event
 
-[![CI](https://github.com/martincalander/unity-animation-event/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/martincalander/unity-animation-event/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/martincalander/unity-animation-event?sort=semver)](https://github.com/martincalander/unity-animation-event/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/martincalander/unity-animation-event/total)](https://github.com/martincalander/unity-animation-event/releases)
-[![License](https://img.shields.io/github/license/martincalander/unity-animation-event)](LICENSE)
+[![CI](https://github.com/martincalander/AsepriteUnityEvent/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/martincalander/AsepriteUnityEvent/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/martincalander/AsepriteUnityEvent?sort=semver)](https://github.com/martincalander/AsepriteUnityEvent/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/martincalander/AsepriteUnityEvent/total)](https://github.com/martincalander/AsepriteUnityEvent/releases)
+[![License](https://img.shields.io/github/license/martincalander/AsepriteUnityEvent)](LICENSE)
 
 Aseprite extension for authoring Unity animation events directly in the timeline.
 
