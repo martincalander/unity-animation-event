@@ -1,0 +1,68 @@
+# Unity Animation Event
+
+Aseprite extension for authoring Unity animation events directly in the timeline.
+
+Created and maintained by Martin Calander.
+
+## Installation
+
+The repository root is the Aseprite extension package root. To install from source:
+
+1. Download or clone this repository.
+2. Create a ZIP archive containing the root files, with `package.json` at the archive root.
+3. Rename the archive so it ends in `.aseprite-extension`.
+4. Open the archive with Aseprite and confirm the native installation prompt.
+
+Restart Aseprite or rescan the Scripts folder if the commands are not visible immediately.
+
+## Features
+
+- Managed `Events` layer with enforced structure for consistent exports.
+- Event cels stored as `event:@NAME` in cel data.
+- Add/remove events from cel and frame popup menus.
+- Double-click event editing on the `Events` layer.
+- Non-modal live settings panel for marker color and behavior controls.
+- Whole-file import command to convert timeline tags like `@PUNCH` into Unity Animation Events at tag start frame.
+- Whole-file duplicate tag analyzer that can auto-rename duplicates to unique names with ` (1)`, ` (2)` suffixes.
+- Migration command to convert legacy `event:MyMethod` entries to current `event:@MyMethod` format.
+- Layer context action `Dont Import to Unity` that marks layer metadata as `DontImportToUnity` and dims the layer.
+- Multilingual UI support with auto language detection.
+
+## Language Support
+
+The extension UI supports:
+
+- English (`en`)
+- Spanish (`es`)
+- Swedish (`sv`)
+- French (`fr`)
+- German (`de`)
+- Portuguese (`pt`)
+- Auto mode (reads Aseprite UI language)
+
+Language is configurable in `File > Scripts > Unity Animation Event Settings`.
+
+## Default Shortcuts (`my_keys`)
+
+- `Ctrl+Alt+E`: Add Unity Animation Event
+- `Ctrl+Alt+D`: Edit Unity Animation Event
+- `Ctrl+Alt+R`: Remove Unity Animation Event
+- `Ctrl+Alt+I`: Import `@Tags` to Unity Animation Events (whole file)
+- `Ctrl+Alt+U`: Analyze duplicate tags and rename to unique
+- `Ctrl+Alt+M`: Migrate `event:MyMethod` to current format
+- `Ctrl+Alt+S`: Unity Animation Event Settings
+
+## Notes
+
+- Double-click editing only applies to the managed `Events` layer.
+- Event layer integrity is automatically enforced (name, lock state, visibility, top-level placement).
+- Opening properties on a `DontImportToUnity` layer prompts to allow Unity import again (clears metadata and restores full opacity).
+- Existing event data without the `event:@` prefix is normalized automatically.
+
+## Development
+
+There is no build step. Edit `celcolor.lua` directly and keep `package.json`, `my_keys.aseprite-keys`, and the Lua source together at the extension root. Aseprite-generated installation metadata and user preferences are intentionally excluded from the repository.
+
+## License
+
+Released under the [MIT License](LICENSE).

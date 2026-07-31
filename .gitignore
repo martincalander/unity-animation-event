@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.emmyrc.json
+__info.json
+__pref.lua
+*.aseprite-extension
+*.zip
+.aem-*
