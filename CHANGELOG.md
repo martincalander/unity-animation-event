@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.2 - 2026-07-31
+
+- Added automated source validation and deterministic extension packaging.
+- Added tag-driven GitHub Releases with immutable asset verification.
+- Added repository badges for CI, releases, downloads, and licensing.
+
 ## 1.3.1 - 2026-02-09
 
 - Added layer popup action **Dont Import to Unity** for non-managed layers.
